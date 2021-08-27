@@ -1,5 +1,22 @@
 {
   "uid" : "b1a8273437954620fa374b796ffaacdd",
   "name" : "behaviors",
-  "children" : [ ]
+  "children" : [ {
+    "name" : "testmockdata",
+    "children" : [ {
+      "name" : "mockoon_partner_boarding",
+      "uid" : "17ffd6c40236cf7a",
+      "parentUid" : "c941b53f5f4913f324b1651c08659737",
+      "status" : "passed",
+      "time" : {
+        "start" : 1630050617909,
+        "stop" : 1630050618009,
+        "duration" : 100
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "c941b53f5f4913f324b1651c08659737"
+  } ]
 }
