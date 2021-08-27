@@ -1,0 +1,804 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Krungsri API Factory",
+    "description": "This is the APIs for onboarding partner",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "Partner Onboarding : Fund Transfer"
+    }
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "basePath": "/",
+  "paths": {
+    "/rest/api/v1/businessSupport/parameters/fundTransfer": {
+      "post": {
+        "tags": [
+          "Partner Onboarding : Fund Transfer"
+        ],
+        "summary": "Partner Onboarding for Fund transfer",
+        "description": "Create new partner parameters for fund transfer API.",
+        "operationId": "createFundTransfer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Client-Transaction-ID",
+            "description": "Unique transaction id passed from consumer",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Gateway-Transaction-ID",
+            "description": "Unique transaction id that automatically generated from CA L7 Gateway",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "FundTransferParametersSetupRequest",
+            "description": "Fund Transfer Parameters Setup Request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FundTransferParametersSetupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Internal server error occurred"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Partner Onboarding : Fund Transfer"
+        ],
+        "summary": "Partner Onboarding for Fund transfer",
+        "description": "Get a partner parameters data for fund transfer API.",
+        "operationId": "getFundTransfer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Client-Transaction-ID",
+            "description": "Unique transaction id passed from consumer",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Gateway-Transaction-ID",
+            "description": "Unique transaction id that automatically generated from CA L7 Gateway",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "partnerApiKey",
+            "description": "Unique identifier used to perform get a partner onboard data",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/FundTransferParametersDataResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Internal server error occurred"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FundTransferParametersSetupRequest": {
+      "description": "Fund Transfer Parameters Setup Request",
+      "type": "object",
+      "required": [
+        "portalInformation",
+        "partnerParameter"
+      ],
+      "properties": {
+        "portalInformation": {
+          "$ref": "#/definitions/PortalInformation"
+        },
+        "partnerProfile": {
+          "$ref": "#/definitions/PartnerProfile"
+        },
+        "partnerParameter": {
+          "$ref": "#/definitions/FundTransferPartnerParameter"
+        }
+      }
+    },
+    "FundTransferParametersDataResponse": {
+      "description": "Fund Transfer Parameters Data Response",
+      "type": "object",
+      "properties": {
+        "portalInformation": {
+          "$ref": "#/definitions/PortalInformation"
+        },
+        "partnerProfile": {
+          "$ref": "#/definitions/PartnerProfile"
+        },
+        "partnerParameter": {
+          "$ref": "#/definitions/FundTransferPartnerParameter"
+        }
+      }
+    },
+    "FundTransferPartnerParameter": {
+      "description": "Partner Parameter",
+      "type": "object",
+      "required": [
+        "partnerId",
+        "verifySourceAccount",
+        "verifyDestinationAccount",
+        "verifyTransactionAuthorization",
+        "allowFeeOverride",
+        "transactionAuthorizationMethodForUntrustedAccountNumber"
+      ],
+      "properties": {
+        "appMapping": {
+          "$ref": "#/definitions/AppMapping"
+        },
+        "partnerId": {
+          "type": "string",
+          "example": "CUCO"
+        },
+        "verifySourceAccount": {
+          "type": "boolean"
+        },
+        "verifyDestinationAccount": {
+          "type": "boolean"
+        },
+        "verifyTransactionAuthorization": {
+          "type": "boolean"
+        },
+        "allowFeeOverride": {
+          "type": "boolean"
+        },
+        "transactionAuthorizationMethodForUntrustedAccountNumber": {
+          "type": "string",
+          "example": "link-account"
+        },
+        "trustedTransactionConfigs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TrustedTransactionConfig"
+          }
+        },
+        "trustedAccountNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "1234567890"
+          }
+        }
+      }
+    },
+    "AppMapping": {
+      "description": "App Mapping to Backend System",
+      "type": "object",
+      "required": [
+        "appId"
+      ],
+      "properties": {
+        "appId": {
+          "type": "string",
+          "example": "l7069f510d3e2645"
+        },
+        "systemMappings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SystemMapping"
+          }
+        }
+      }
+    },
+    "SystemMapping": {
+      "description": "System Mapping",
+      "type": "object",
+      "required": [
+        "name",
+        "mappingId"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "CASHLINK"
+        },
+        "mappingId": {
+          "type": "string",
+          "example": "POR2"
+        }
+      }
+    },
+    "PortalInformation": {
+      "description": "Portal Information",
+      "type": "object",
+      "required": [
+        "orgUuid",
+        "appUuid",
+        "apiKey"
+      ],
+      "properties": {
+        "orgUuid": {
+          "type": "string",
+          "example": "69992c65-81ce-45b8-a9d0-521585163f4c"
+        },
+        "appUuid": {
+          "type": "string",
+          "example": "8d501ec2-467d-41e8-a47a-35f2faf26ba4"
+        },
+        "apiKey": {
+          "type": "string",
+          "example": "l7b8bea45afd0b42d1ab625f6c3b392287"
+        }
+      }
+    },
+    "PartnerProfile": {
+      "description": "Partner Profile",
+      "type": "object",
+      "required": [
+        "nameTh",
+        "nameEn",
+        "typeOfIdentification",
+        "identificationNumber",
+        "billingEmail"
+      ],
+      "properties": {
+        "nameTh": {
+          "type": "string",
+          "example": "บริษัท ทดสบ จำกัด"
+        },
+        "nameEn": {
+          "type": "string",
+          "example": "TEST CO.,LTD. "
+        },
+        "typeOfIdentification": {
+          "type": "string",
+          "example": "07"
+        },
+        "identificationNumber": {
+          "type": "string",
+          "example": "0105537133562"
+        },
+        "billingEmail": {
+          "type": "string",
+          "example": "mail@partner.com"
+        },
+        "contactPersons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartnerContactPerson"
+          }
+        },
+        "partnerAddresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartnerAddress"
+          }
+        }
+      }
+    },
+    "PartnerContactPerson": {
+      "description": "Partner Contact",
+      "type": "object",
+      "required": [
+        "agentType",
+        "firstName"
+      ],
+      "properties": {
+        "agentType": {
+          "type": "string",
+          "example": "PARTNER_REPRESENTATIVE "
+        },
+        "title": {
+          "type": "string",
+          "example": "นาย "
+        },
+        "firstName": {
+          "type": "string",
+          "example": "ชื่อจริง "
+        },
+        "middleName": {
+          "type": "string",
+          "example": "ชื่อกลาง"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "นามสกุลจริง "
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartnerContact"
+          }
+        }
+      }
+    },
+    "PartnerContact": {
+      "description": "Contact",
+      "type": "object",
+      "required": [
+        "contactType",
+        "value"
+      ],
+      "properties": {
+        "contactType": {
+          "type": "string",
+          "example": "EMAIL"
+        },
+        "value": {
+          "type": "string",
+          "example": "mail@partner.com"
+        },
+        "valueExt": {
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "PartnerAddress": {
+      "description": "Partner Address",
+      "type": "object",
+      "required": [
+        "addressType",
+        "buildingNumber",
+        "subDistrict",
+        "district",
+        "province",
+        "postCode",
+        "countryCode"
+      ],
+      "properties": {
+        "addressType": {
+          "type": "string",
+          "example": "BILLING"
+        },
+        "buildingName": {
+          "type": "string",
+          "example": "กรุงศรีเพลินจิต ทาวเวอร์  ชั้น 14 "
+        },
+        "buildingNumber": {
+          "type": "string",
+          "example": "550"
+        },
+        "villageName": {
+          "type": "string",
+          "example": ""
+        },
+        "villageNumber": {
+          "type": "string",
+          "example": ""
+        },
+        "streetName": {
+          "type": "string",
+          "example": "เพลินจิต"
+        },
+        "lane": {
+          "type": "string",
+          "example": ""
+        },
+        "subDistrict": {
+          "type": "string",
+          "example": "ลุมพินี"
+        },
+        "district": {
+          "type": "string",
+          "example": "ปทุมวัน"
+        },
+        "province": {
+          "type": "string",
+          "example": "เพลินจิต"
+        },
+        "countryCode": {
+          "type": "string",
+          "example": "กรุงเทพมหานคร"
+        },
+        "postCode": {
+          "type": "string",
+          "example": "10330"
+        }
+      }
+    },
+    "FundTransferConfig": {
+      "description": "Service Config (Global)",
+      "type": "object",
+      "required": [
+        "transactionCode",
+        "allowOnUs",
+        "allowOrft",
+        "allowPromptPay",
+        "serviceType",
+        "feeChargeTypeNormal",
+        "feeChargeTypeOverride"
+      ],
+      "properties": {
+        "transactionCode": {
+          "type": "string",
+          "example": "DIRECT_CREDIT"
+        },
+        "allowOnUs": {
+          "type": "boolean"
+        },
+        "allowOrft": {
+          "type": "boolean"
+        },
+        "allowPromptPay": {
+          "type": "boolean"
+        },
+        "serviceType": {
+          "type": "string",
+          "example": ""
+        },
+        "feeChargeTypeNormal": {
+          "type": "string",
+          "example": "TBD"
+        },
+        "feeChargeTypeOverride": {
+          "type": "string",
+          "example": ""
+        },
+        "transactionCategory": {
+          "type": "string",
+          "example": ""
+        },
+        "businessDomain": {
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "TrustedTransactionConfig": {
+      "description": "Trusted Transaction Config",
+      "type": "object",
+      "required": [
+        "transactionCode",
+        "transferLimit",
+        "fee",
+        "feeAccountNumber",
+        "feeReceiptDesc",
+        "feeChargeParty"
+      ],
+      "properties": {
+        "transactionCode": {
+          "type": "string",
+          "example": "DIRECT_CREDIT"
+        },
+        "transferLimit": {
+          "$ref": "#/definitions/TransferLimit"
+        },
+        "transactionFee": {
+          "$ref": "#/definitions/TransactionFee"
+        },
+        "feeReceiptDesc": {
+          "type": "string",
+          "example": ""
+        },
+        "feeChargeParty": {
+          "type": "string",
+          "example": ""
+        },
+        "monthlyFixFee": {
+          "$ref": "#/definitions/MonthlyFixFee"
+        }
+      }
+    },
+    "TransactionFee": {
+      "description": "Transaction Fee",
+      "type": "object",
+      "required": [
+        "applyOnMinAmount",
+        "feeProcessingType",
+        "feeType",
+        "feeValue",
+        "feeChargeType"
+      ],
+      "properties": {
+        "feeProcessingType": {
+          "type": "string",
+          "example": "REALTIME"
+        },
+        "feeTiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FeeTier"
+          }
+        },
+        "dailyFee": {
+          "$ref": "#/definitions/DailyFee"
+        },
+        "monthlyFee": {
+          "$ref": "#/definitions/MonthlyFee"
+        }
+      }
+    },
+    "FeeTier": {
+      "description": "Fee Tier",
+      "type": "object",
+      "required": [
+        "applyOnMinAmount",
+        "feeType",
+        "feeValue",
+        "feeChargeType"
+      ],
+      "properties": {
+        "applyOnMinAmount": {
+          "type": "number",
+          "example": "0"
+        },
+        "applyOnMaxAmount": {
+          "type": "number",
+          "example": "999.99"
+        },
+        "feeType": {
+          "type": "string",
+          "example": "fixed"
+        },
+        "feeValue": {
+          "type": "number",
+          "example": "5"
+        },
+        "feeChargeType": {
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "TransferLimit": {
+      "description": "Transfer Limit",
+      "type": "object",
+      "required": [
+        "minPerTransaction",
+        "maxPerTransaction"
+      ],
+      "properties": {
+        "minPerTransaction": {
+          "type": "number",
+          "example": "0"
+        },
+        "maxPerTransaction": {
+          "type": "number",
+          "example": "699999.99"
+        }
+      }
+    },
+    "DailyFee": {
+      "description": "Monthly Fee",
+      "type": "object",
+      "required": [
+        "feeAccountNumber",
+        "serviceType"
+      ],
+      "properties": {
+        "feeAccountNumber": {
+          "type": "string",
+          "example": ""
+        },
+        "serviceType": {
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "MonthlyFee": {
+      "description": "Monthly Fee",
+      "type": "object",
+      "required": [
+        "feeAccountNumber",
+        "billingCycle",
+        "serviceType"
+      ],
+      "properties": {
+        "feeAccountNumber": {
+          "type": "string",
+          "example": ""
+        },
+        "billingCycle": {
+          "type": "number",
+          "example": "1"
+        },
+        "serviceType": {
+          "type": "string",
+          "example": ""
+        },
+        "minimumMonthlyFee": {
+          "type": "number",
+          "example": "0"
+        }
+      }
+    },
+    "MonthlyFixFee": {
+      "description": "Monthly Fix Fee",
+      "type": "object",
+      "required": [
+        "cycle",
+        "amount",
+        "account",
+        "receiptDesc",
+        "chargeParty",
+        "serviceType"
+      ],
+      "properties": {
+        "cycle": {
+          "type": "number",
+          "example": "1"
+        },
+        "amount": {
+          "type": "number",
+          "example": "1"
+        },
+        "account": {
+          "type": "string",
+          "example": ""
+        },
+        "receiptDesc": {
+          "type": "string",
+          "example": ""
+        },
+        "chargeParty": {
+          "type": "string",
+          "example": ""
+        },
+        "serviceType": {
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "ErrorResponse": {
+      "description": "Response model for error",
+      "type": "object",
+      "title": "ErrorResponse",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorInfo"
+        }
+      }
+    },
+    "ErrorInfo": {
+      "description": "Show information about the error",
+      "type": "object",
+      "title": "ErrorInfo",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "detailedErrors": {
+          "description": "List of errors",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DetailedErrorItem"
+          }
+        },
+        "code": {
+          "description": "Error Code",
+          "type": "string",
+          "example": "I002"
+        },
+        "message": {
+          "description": "Error Message",
+          "type": "string",
+          "example": "REQUEST BODY IS INVALID"
+        }
+      }
+    },
+    "DetailedErrorItem": {
+      "description": "Detailed of Error",
+      "type": "object",
+      "title": "DetailedErrorItem",
+      "properties": {
+        "originalErrorDesc": {
+          "description": "Original error message from backend.",
+          "type": "string",
+          "example": "Credit Card Not found"
+        },
+        "message": {
+          "description": "More information on the problem and solution. Or, the error message from backend.",
+          "type": "string",
+          "example": "Missing juristicId query parameter"
+        },
+        "originalErrorCode": {
+          "description": "Original error code from backend.",
+          "type": "string",
+          "example": "RM7885"
+        }
+      }
+    }
+  }
+}

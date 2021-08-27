@@ -1,0 +1,96 @@
+{
+    "source": "mockoon:1.11.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 13,
+                "name": "Open Partner-On-Board API",
+                "endpointPrefix": "/rest/api/v1",
+                "latency": 0,
+                "port": 3001,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "/businessSupport/parameters/fundTransfer",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\"portalInformation\":{\"orgUuid\":\"69992c65-81ce-45b8-a9d0-521585163f4c\",\"appUuid\":\"8d501ec2-467d-41e8-a47a-35f2faf26ba4\",\"apiKey\":\"l7b8bea45afd0b42d1ab625f6c3b392287\"},\"partnerProfile\":{\"nameTh\":\"บริษัท ทดสบ จำกัด\",\"nameEn\":\"TEST CO.,LTD. \",\"typeOfIdentification\":\"07\",\"identificationNumber\":\"0105537133562\",\"partnerContacts\":[{\"contactType\":\"BILLING_EMAIL\",\"ownerType\":\"ORGANIZATION\",\"value\":\"mail@partner.com\",\"valueExt\":\"mail@partner.com\",\"contactPerson\":{\"agentType\":\"PARTNER_REPRESENTATIVE \",\"title\":\"นาย \",\"firstName\":\"ชื่อจริง \",\"middleName\":\"ชื่อกลาง\",\"lastName\":\"นามสกุลจริง \"}}],\"partnerAddreses\":[{\"addressType\":\"BILLING\",\"buildingName\":\"กรุงศรีเพลินจิต ทาวเวอร์  ชั้น 14 \",\"buildingNumber\":\"550\",\"villageName\":\"\",\"villageNumber\":\"\",\"streetName\":\"เพลินจิต\",\"lane\":\"\",\"subDistrict\":\"ลุมพินี\",\"district\":\"ปทุมวัน\",\"province\":\"เพลินจิต\",\"countryCode\":\"กรุงเทพมหานคร\",\"postCode\":\"10330\"}]},\"partnerParameter\":{\"appMapping\":{\"appId\":\"l7069f510d3e2645\",\"systemMappings\":[{\"name\":\"CASHLINK\",\"mappingId\":\"POR2\"}]},\"partnerId\":\"CUCO\",\"verifySourceAccount\":true,\"verifyDestinationAccount\":true,\"verifyTransactionAuthorization\":true,\"allowFeeOverride\":true,\"transactionAuthorizationMethodForUntrustedAccountNumber\":\"link-account\",\"trustedTransactionConfigs\":[{\"transactionCode\":\"DIRECT_CREDIT\",\"transansferLimit\":{\"minPerTransaction\":0,\"maxPerTransaction\":699999.99},\"transactionFees\":[{\"feeProcessingType\":\"REALTIME\",\"feeTiers\":[{\"applyOnMinAmount\":0,\"applyOnMaxAmount\":999.99,\"feeType\":\"fixed\",\"feeValue\":5,\"feeChargeType\":\"\"}],\"dailyFee\":{\"feeAccountNumber\":\"\",\"serviceType\":\"\"},\"monthlyFee\":{\"feeAccountNumber\":\"\",\"billingCycle\":1,\"serviceType\":\"\",\"minimumMonthlyFee\":0}}],\"feeReceiptDesc\":\"\",\"feeChargeParty\":\"\",\"monthlyFixFee\":{\"cycle\":1,\"amount\":1,\"account\":\"\",\"receiptDesc\":\"\",\"chargeParty\":\"\",\"serviceType\":\"\"}}],\"trustedAccountNumbers\":[\"1234567890\"]},\"serviceConfigs\":[{\"transactionCode\":\"DIRECT_CREDIT\",\"allowOnUs\":true,\"allowOrft\":true,\"allowPromptPay\":true,\"serviceType\":\"\",\"feeChargeTypeNormal\":\"TBD\",\"feeChargeTypeOverride\":\"\",\"transactionCategory\":\"\",\"businessDomain\":\"\"}]}",
+								"latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false
+                    },
+					                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "/businessSupport/parameters/fundTransfer",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{}",
+                                "latency": 0,
+                                "statusCode": 204,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
